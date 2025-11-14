@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mensagens Infinitas ✨</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;600;700&family=Fredoka:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Background animado (padrões lilás) -->
+  <div class="bg-animation"></div>
+
+  <!-- Cabeçalho -->
+  <header class="header">
+    <h1 class="title">💌 Mensagens Infinitas 💌</h1>
+    <p class="subtitle">Uma mensagem fofa diferente a cada dia (ou como você quiser!)</p>
+  </header>
+
+  <!-- Conteúdo principal -->
+  <main class="main-wrapper">
+    <section class="card">
+      <div class="card-header">
+        <span class="sparkle">✨</span>
+        <h2 class="greeting">Olá, julia</h2>
+        <span class="sparkle">✨</span>
+      </div>
+
+      <p id="msg" class="message">Carregando mensagem…</p>
+
+      <div class="nav-buttons">
+        <button id="prev"  class="btn btn-nav">← Anterior</button>
+        <button id="next"  class="btn btn-nav">Próxima →</button>
+      </div>
+
+      <button id="share" class="btn btn-share">Compartilhar 💌</button>
+      <button id="edit"  class="btn btn-edit">Editar Mensagem ✏️</button>
+    </section>
+  </main>
+
+  <!-- Modal de edição -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <header class="modal-header">
+        <h3>Editar ou Criar Mensagem</h3>
+        <button class="close">×</button>
+      </header>
+
+      <textarea id="textArea" class="edit-box" placeholder="Digite aqui…"></textarea>
+
+      <footer class="modal-actions">
+        <button id="save"   class="btn btn-save">Salvar 💾</button>
+        <button id="cancel" class="btn btn-cancel">Cancelar ✖</button>
+      </footer>
+    </div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer class="footer">
+    Feito com 💜 para julia
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
