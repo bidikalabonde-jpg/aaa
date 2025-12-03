@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#c48cff">
   <title>Mensagens Infinitas ✨</title>
 
   <!-- Google Fonts -->
@@ -13,6 +14,11 @@
 <body>
   <!-- Background animado (padrões lilás) -->
   <div class="bg-animation"></div>
+
+  <!-- Topbar simples -->
+  <div class="topbar" role="banner">
+    <div class="logo">💌 <span class="brand">Mensagens Infinitas</span></div>
+  </div>
 
   <!-- Cabeçalho -->
   <header class="header">
@@ -32,31 +38,15 @@
       <p id="msg" class="message">Carregando mensagem…</p>
 
       <div class="nav-buttons">
-        <button id="prev"  class="btn btn-nav">← Anterior</button>
-        <button id="next"  class="btn btn-nav">Próxima →</button>
+        <button id="prev"  class="btn btn-nav" aria-label="Mensagem anterior">← Anterior</button>
+        <button id="next"  class="btn btn-nav" aria-label="Próxima mensagem">Próxima →</button>
       </div>
 
-      <button id="share" class="btn btn-share">Compartilhar 💌</button>
-      <button id="edit"  class="btn btn-edit">Editar Mensagem ✏️</button>
+      <button id="share" class="btn btn-share" aria-label="Compartilhar mensagem">Compartilhar 💌</button>
+      <!-- botão de editar removido conforme solicitado -->
     </section>
   </main>
 
-  <!-- Modal de edição -->
-  <div id="modal" class="modal">
-    <div class="modal-content">
-      <header class="modal-header">
-        <h3>Editar ou Criar Mensagem</h3>
-        <button class="close">×</button>
-      </header>
-
-      <textarea id="textArea" class="edit-box" placeholder="Digite aqui…"></textarea>
-
-      <footer class="modal-actions">
-        <button id="save"   class="btn btn-save">Salvar 💾</button>
-        <button id="cancel" class="btn btn-cancel">Cancelar ✖</button>
-      </footer>
-    </div>
-  </div>
 
   <!-- Rodapé -->
   <footer class="footer">

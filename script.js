@@ -96,13 +96,7 @@ const msgEl   = document.getElementById("msg");
 const prevBtn = document.getElementById("prev");
 const nextBtn = document.getElementById("next");
 const shareBtn= document.getElementById("share");
-const editBtn = document.getElementById("edit");
-
-const modal   = document.getElementById("modal");
-const textBox = document.getElementById("textArea");
-const saveBtn = document.getElementById("save");
-const cancelBtn = document.getElementById("cancel");
-const closeX  = document.querySelector(".close");
+// botão de editar removido — não há elementos correspondentes no DOM
 
 /* ---------- Inicialização ---------- */
 document.addEventListener("DOMContentLoaded", () => {
@@ -114,6 +108,11 @@ document.addEventListener("DOMContentLoaded", () => {
 /* ---------- Exibe a mensagem atual ---------- */
 function showMessage() {
   msgEl.textContent = messages[index];
+  // pequena animação ao trocar mensagem
+  msgEl.classList.remove('message--pop');
+  // forçar reflow para reiniciar animação
+  void msgEl.offsetWidth;
+  msgEl.classList.add('message--pop');
 }
 
 /* ---------- Navegação ---------- */
@@ -129,33 +128,19 @@ nextBtn.addEventListener("click", () => {
 /* ---------- Compartilhar / Copiar ---------- */
 shareBtn.addEventListener("click", () => {
   const text = `${msgEl.textContent}\n(via Mensagens Infinitas 💌)`;
-  if (navigator.share) navigator.share({ text });
-  else {
-    navigator.clipboard.writeText(text);
-    alert("Mensagem copiada! Agora cole onde quiser 💜");
+  if (navigator.share) {
+    try { navigator.share({ text }); }
+    catch (err) { navigator.clipboard.writeText(text); alert('Compartilhamento não disponível — mensagem copiada. 💜'); }
+  } else {
+    navigator.clipboard.writeText(text).then(() => {
+      alert('Mensagem copiada! Agora cole onde quiser 💜');
+    }).catch(() => {
+      alert('Não foi possível copiar automaticamente. Selecione e copie a mensagem manualmente.');
+    });
   }
 });
-
-/* ---------- Editar ---------- */
-editBtn.addEventListener("click", () => {
-  textBox.value = messages[index];
-  modal.classList.add("active");
-  textBox.focus();
-});
-function closeModal() {
-  modal.classList.remove("active");
-  textBox.value = "";
-}
-cancelBtn.addEventListener("click", closeModal);
-closeX.addEventListener("click", closeModal);
-modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
-
-/* ---------- Salvar ---------- */
-saveBtn.addEventListener("click", () => {
-  const newMsg = textBox.value.trim();
-  if (!newMsg) { alert("A mensagem não pode ser vazia!"); return; }
-  messages[index] = newMsg;
-  localStorage.setItem("myMsgList", JSON.stringify(messages));
-  showMessage();
-  closeModal();
+// Navegação por teclado (esquerda/direita)
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') { prevBtn.click(); }
+  else if (e.key === 'ArrowRight') { nextBtn.click(); }
 });

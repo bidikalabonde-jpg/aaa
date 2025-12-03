@@ -43,6 +43,7 @@ body{
 .title{
   font-family:'Fredoka',sans-serif;font-size:2.3rem;
   background:linear-gradient(135deg,var(--lilac-700),var(--lilac-600));
+  background-clip:text;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
   animation:bounce 3.5s ease-in-out infinite;
 }
@@ -54,7 +55,8 @@ body{
 .card{
   position:relative;overflow:hidden;z-index:2;
   max-width:520px;width:100%;padding:52px 44px;border-radius:var(--radius);
-  background:var(--white);box-shadow:var(--shadow-lg);border:3px solid rgba(214,161,255,.25);
+  background:linear-gradient(180deg, rgba(255,255,255,0.98) 0%, rgba(250,245,255,0.98)100%);
+  box-shadow:var(--shadow-lg);border:1px solid rgba(214,161,255,.18);
   animation:slideUp .6s ease-out;
 }
 @keyframes slideUp{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:translateY(0)}}
@@ -74,16 +76,20 @@ body{
 .greeting{
   font-family:'Fredoka',sans-serif;font-size:1.8rem;text-transform:capitalize;
   background:linear-gradient(135deg,var(--lilac-700),var(--lilac-600));
+  background-clip:text;
   -webkit-background-clip:text;-webkit-text-fill-color:transparent;
 }
 
 /* Mensagem */
 .message{
   font-size:1.25rem;line-height:1.8;margin:34px 0;padding:22px;
-  background:linear-gradient(135deg,rgba(245,214,255,.45)0%,rgba(231,192,255,.45)100%);
-  border-left:6px solid var(--lilac-600);border-radius:22px;text-align:center;min-height:90px;
+  background:linear-gradient(180deg, rgba(250,240,255,0.8) 0%, rgba(245,235,255,0.6)100%);
+  border-left:6px solid var(--lilac-500);border-radius:18px;text-align:center;min-height:90px;
   animation:fadeIn .8s ease;
 }
+
+.message--pop{animation:pop .36s ease forwards}
+@keyframes pop{0%{transform:scale(.985);opacity:.85}60%{transform:scale(1.01)}100%{transform:scale(1);opacity:1}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
 /* Botões */
@@ -92,31 +98,23 @@ body{
 .btn::before{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;
              background:rgba(255,255,255,.25);transition:left var(--speed);z-index:-1}
 .btn:hover::before{left:100%} .btn:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+.btn:active{transform:translateY(-1px) scale(.995)}
+:focus{outline:none}
+.btn:focus-visible{box-shadow:0 0 0 4px rgba(140,64,255,.12);border-radius:28px}
 .btn-nav{flex:1;padding:12px 0;margin:0 2px;color:var(--white);
          background:linear-gradient(135deg,var(--lilac-400),var(--lilac-500))}
 .btn-share{width:100%;padding:14px;background:linear-gradient(135deg,var(--lilac-600),var(--lilac-700));color:var(--white);margin-top:16px}
-.btn-edit {width:100%;padding:14px;background:linear-gradient(135deg,var(--lilac-500),var(--lilac-600));color:var(--white);margin-top:10px}
+/* botão de editar removido - estilos omitidos */
 
 /* Grupo dos nav */
 .nav-buttons{display:flex;gap:10px}
 
 /* ---------- Modal ---------- */
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);backdrop-filter:blur(4px);z-index:1000}
-.modal.active{display:flex;align-items:center;justify-content:center;animation:fadeIn .3s}
-.modal-content{background:var(--white);width:90%;max-width:500px;padding:38px;border-radius:var(--radius);
-               box-shadow:var(--shadow-lg);border:3px solid var(--lilac-300);animation:slideUp .4s}
-.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.modal-header h3{color:var(--lilac-700);font-size:1.4rem}
-.close{background:none;border:none;font-size:2rem;color:var(--lilac-600);cursor:pointer}
-.edit-box{width:100%;min-height:130px;padding:16px;border:2px solid var(--lilac-300);border-radius:18px;
-          font-size:1rem;font-family:'Quicksand',sans-serif;resize:vertical}
-.edit-box:focus{outline:none;border-color:var(--lilac-600);box-shadow:0 0 0 3px rgba(196,140,255,.12)}
-.modal-actions{display:flex;gap:12px;margin-top:22px}
-.btn-save{flex:1;background:linear-gradient(135deg,var(--lilac-600),var(--lilac-700));color:#fff;padding:12px}
-.btn-cancel{flex:1;background:var(--lilac-200);color:var(--text-dark);border:2px solid var(--lilac-400);padding:12px}
+/* Modal e caixas de edição removidas — estilos limpos */
 
 /* ---------- Footer ---------- */
 .footer{text-align:center;padding:20px;font-size:.9rem;color:var(--text-dark);z-index:2}
+.footer{opacity:.95}
 
 /* ---------- Responsividade ---------- */
 @media(max-width:768px){
@@ -126,4 +124,9 @@ body{
 @media(max-width:480px){
   .card{padding:28px 22px;border-radius:22px}.message{font-size:1.05rem}
   .title{font-size:1.45rem}
+}
+
+/* Preferências de movimento reduzido */
+@media (prefers-reduced-motion: reduce){
+  .bg-animation, .card::before, .card::after, .btn, .title, .sparkle {animation:none!important;transition:none!important}
 }
